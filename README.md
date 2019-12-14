@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple app to create, list, and search recipes. By the end of it, Matt will have figured out how to spell 'recipe' correctly.
 
-Things you may want to cover:
+## Stack Expectations
 
-* Ruby version
+* Ruby v2.6.3 or later
+* Rails v6.0.3 or later
+* NodeJS v12 or later (and npm)
+* YARN v1 or later
+* PostgreSQL v10 or later (required for PgSearch implementation)
 
-* System dependencies
+The Application is platform independent, and configured to run correctly on ephemeral file systems, like Heroku.
 
-* Configuration
+The installation of these tools on various platforms is beyond the scope of this readme, but a potential configuration for development can be found [here](https://github.com/MatthewSchultz/Install-Rails-on-WSL).
 
-* Database creation
+## Test suite
 
-* Database initialization
+The test suite is based on minitest (the default for rails) and can be run with:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+rails test
+```
