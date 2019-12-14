@@ -22,9 +22,11 @@ The test suite is based on minitest (the default for Rails) and can be run with:
 rails test
 ```
 
+**ALL DEVELOPERS: Tests *must* pass before pushing to dev. Tests *must* pass before pushing to master.**
+
 ## Database Setup
 
-Initially, database setup can be accomplished with ```rails db:create```.
+Initially, database setup can be accomplished with ```rails db:create:all```.
 
 Once initialized, the database can be maintained with:
 
