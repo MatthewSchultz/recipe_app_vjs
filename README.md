@@ -14,10 +14,23 @@ The Application is platform independent, and configured to run correctly on ephe
 
 The installation of these tools on various platforms is beyond the scope of this readme, but a potential configuration for development can be found [here](https://github.com/MatthewSchultz/Install-Rails-on-WSL).
 
-## Test suite
+## Test Suite
 
-The test suite is based on minitest (the default for rails) and can be run with:
+The test suite is based on minitest (the default for Rails) and can be run with:
 
 ```bash
 rails test
 ```
+
+## Database Setup
+
+Initially, database setup can be accomplished with ```rails db:create```.
+
+Once initialized, the database can be maintained with:
+
+```bash
+rails db:migrate
+rails db:seed
+```
+
+**WARNING: Continuous Integration is setup to run database migrations immediately following successful deployment. Do not initiate deployment without properly testing migrations. Failure to observe this may result in a yeti eating your data.**
