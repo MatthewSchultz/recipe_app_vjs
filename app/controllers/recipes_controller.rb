@@ -7,11 +7,6 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
-  # GET /recipes/1
-  # GET /recipes/1.json
-  def show
-  end
-
   # GET /recipes/new
   def new
     @recipe = Recipe.new
@@ -28,8 +23,8 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
-        format.json { render :show, status: :created, location: @recipe }
+        format.html { redirect_to recipes_url, notice: 'Recipe was successfully created.' }
+        format.json { head :no_content }
       else
         format.html { render :new }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
@@ -42,8 +37,8 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
-        format.json { render :show, status: :ok, location: @recipe }
+        format.html { redirect_to recipes_url, notice: 'Recipe was successfully updated.' }
+        format.json { head :no_content }
       else
         format.html { render :edit }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
