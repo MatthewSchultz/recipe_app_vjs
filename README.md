@@ -9,6 +9,7 @@ A simple app to create, list, and search recipes. By the end of it, Matt will ha
 * NodeJS v12 or later (and npm)
 * YARN v1 or later
 * PostgreSQL v10 or later (required for PgSearch implementation)
+* (optional) Chromedriver + Selenium Server (for system tests)
 
 The Application is platform independent, and configured to run correctly on ephemeral file systems, like Heroku.
 
