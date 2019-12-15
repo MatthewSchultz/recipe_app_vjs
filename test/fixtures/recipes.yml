@@ -1,0 +1,14 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: Popcorn
+  cuisine: 1
+  planning_to_cook_on: <%= Time.zone.now + 1.day %>
+  tried_before: true
+  instructions: '<ol><li>Retrieve Packet</li><li>Place in microwave</li><li>Wait for popping to stop</li><li>Eat</li></ol>'
+
+two:
+  title: Spaghetti
+  cuisine: 2
+  tried_before: false
+  instructions: '<ol><li>Boil a massive pot of water</li><li>Dump pasta in water</li><li>Cook till soft</li><li>Strain pasta</li><li>Pour sauce on top</li><li>Eat</li></ol>'
