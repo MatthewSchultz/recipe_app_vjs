@@ -56,8 +56,16 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test "instructions cannot have javascript" do
+    # Don't allow script tags
     recipe = Recipe.new(
       instructions: '<script>for (;;) { alert("Alert! This is JavaScript and it is super annoying! Do not allow this!!!!!!"); }</script>'
+    )
+    assert_not recipe.save
+    assert_includes recipe.errors, :instructions
+
+    # Don't allow js attributes:
+    recipe = Recipe.new(
+      instructions: "<a onclick=\"for (;;) { alert('Alert! This is JavaScript and it is super annoying! Do not allow this!!!!!!'); }\">Totally click this to get monies from a Nigerian Prince!!!</a>"
     )
     assert_not recipe.save
     assert_includes recipe.errors, :instructions
