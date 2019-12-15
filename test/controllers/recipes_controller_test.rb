@@ -13,6 +13,15 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get recipes_url
     assert_response :success
+
+    # Assert that the page title is set:
+    assert_select 'title', 'Recipes'
+
+    # Assert that the page has the correct header:
+    assert_select 'h1', 'Recipes'
+
+    # Test that the table is properly styled:
+    assert_select 'table.table'
   end
 
   test "should get new" do
