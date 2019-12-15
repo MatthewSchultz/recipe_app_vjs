@@ -13,16 +13,7 @@
       %th
 
   %tbody
-    - @recipes.each do |recipe|
-      %tr
-        %td= recipe.title
-        %td= recipe.cuisine
-        %td= recipe.planning_to_cook_on
-        %td= recipe.tried_before
-        %td= recipe.instructions
-        %td= link_to 'Show', recipe
-        %td= link_to 'Edit', edit_recipe_path(recipe)
-        %td= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' }
+    = render @recipes
 
 %br
 

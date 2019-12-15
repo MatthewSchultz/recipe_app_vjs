@@ -24,10 +24,10 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'table.table'
 
     # Test that there are no show links:
-    assert_select 'a', {text: 'Show', count: 0}
+    assert_select 'a', text: 'Show', count: 0
 
     # Test that all of the recipes are show:
-    assert_select 'tr', {count: Recipe.count}
+    assert_select 'tr.recipe', {count: Recipe.count}
   end
 
   test "should get new" do
