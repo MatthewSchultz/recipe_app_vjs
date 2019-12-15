@@ -56,7 +56,7 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test "instructions cannot have javascript" do
-    # Don't allow script tags
+    # Don't allow script tags:
     recipe = Recipe.new(
       instructions: '<script>for (;;) { alert("Alert! This is JavaScript and it is super annoying! Do not allow this!!!!!!"); }</script>'
     )
