@@ -28,9 +28,10 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to recipe_url(Recipe.last)
   end
 
-  test "should show recipe" do
-    get recipe_url(Recipe.first)
-    assert_response :success
+  test "should not show recipe" do
+    assert_raise Exception do
+      get recipe_url(Recipe.first)
+    end
   end
 
   test "should get edit" do
