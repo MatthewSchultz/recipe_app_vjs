@@ -22,6 +22,12 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
     # Test that the table is properly styled:
     assert_select 'table.table'
+
+    # Test that there are no show links:
+    assert_select 'a', {text: 'Show', count: 0}
+
+    # Test that all of the recipes are show:
+    assert_select 'tr', {count: Recipe.count}
   end
 
   test "should get new" do
