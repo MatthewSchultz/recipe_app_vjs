@@ -12,6 +12,8 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+
+    @title = 'Add Recipe'
   end
 
   # GET /recipes/1/edit

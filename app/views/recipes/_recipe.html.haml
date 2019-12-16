@@ -2,8 +2,8 @@
   %td= recipe.title
   %td= recipe.cuisine
   %td= recipe.planning_to_cook_on
-  %td= recipe.tried_before
-  %td= recipe.instructions
+  %td= recipe.tried_before ? 'Yes' : 'No'
+  %td= recipe.instructions.html_safe
   %td
   %td= link_to 'Edit', edit_recipe_path(recipe)
   %td= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' }
