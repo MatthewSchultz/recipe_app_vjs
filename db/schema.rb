@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_15_204629) do
+ActiveRecord::Schema.define(version: 2019_12_16_142545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "ingrediants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_ingrediants_on_name", unique: true
+  end
 
   create_table "recipes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title", limit: 1024, null: false
