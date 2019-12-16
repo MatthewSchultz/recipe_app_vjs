@@ -1,0 +1,25 @@
+%h1 Recipes
+
+= form_tag recipes_url, remote: true, method: :get do
+  = search_field_tag :q
+
+%hr
+
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Cuisine
+      %th Planning to cook on
+      %th Tried before
+      %th Instructions
+      %th Ingrediants
+      %th
+      %th
+
+  %tbody
+    = render @recipes
+
+%br
+
+= link_to 'New Recipe', new_recipe_path
