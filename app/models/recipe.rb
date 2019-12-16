@@ -6,4 +6,6 @@ class Recipe < ApplicationRecord
     Asian: 4,
     Other: 5
   }
+
+  validates :title, presence: true, uniqueness: true, length: 1..1024
 end

@@ -28,9 +28,12 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test 'recipe cuisine must be in enum' do
-    recipe = Recipe.new(
-      cuisine: Recipe.cuisines.values.max + 1
-    )
+    recipe = Recipe.new
+    assert_raises Exception do
+      recipe = Recipe.new(
+        cuisine: 'Moo'
+      )
+    end
     assert_not recipe.save
     assert_includes recipe.errors, :cuisine
 

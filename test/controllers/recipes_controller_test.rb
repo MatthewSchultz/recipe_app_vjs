@@ -33,6 +33,15 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
     get new_recipe_url
     assert_response :success
+
+    # Assert that the page title is set:
+    assert_select 'title', 'Add Recipe'
+
+    # Assert that the page has the correct header:
+    assert_select 'h1', 'Add Recipe'
+
+    # Assert that the form is present:
+    assert_select 'form.recipe'
   end
 
   test "should create recipe" do
@@ -66,5 +75,12 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to recipes_url
+  end
+
+  test "should show error" do
+    post recipes_url, params: { recipe: { title: 'nope' } }
+
+    assert_redirected_to new_recipe_url
+    assert_selector '#error_explanation'
   end
 end
