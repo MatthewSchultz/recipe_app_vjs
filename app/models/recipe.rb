@@ -8,4 +8,5 @@ class Recipe < ApplicationRecord
   }
 
   validates :title, presence: true, uniqueness: true, length: 1..1024
+  validates :cuisine, presence: true, inclusion: {in: Recipe.cuisines.keys.map(&:to_s)}
 end
