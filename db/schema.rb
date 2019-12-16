@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_142545) do
+ActiveRecord::Schema.define(version: 2019_12_16_142918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 2019_12_16_142545) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_ingrediants_on_name", unique: true
+  end
+
+  create_table "recipe_ingrediants", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "recipe_id", null: false
+    t.uuid "ingrediant_id", null: false
+    t.decimal "qty", precision: 3, null: false
+    t.integer "unit", limit: 2, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingrediant_id"], name: "index_recipe_ingrediants_on_ingrediant_id"
+    t.index ["recipe_id"], name: "index_recipe_ingrediants_on_recipe_id"
   end
 
   create_table "recipes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -34,4 +45,6 @@ ActiveRecord::Schema.define(version: 2019_12_16_142545) do
     t.index ["title"], name: "index_recipes_on_title", unique: true
   end
 
+  add_foreign_key "recipe_ingrediants", "ingrediants"
+  add_foreign_key "recipe_ingrediants", "recipes"
 end

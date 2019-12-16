@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = params[:q].present? ? Recipe.search(params[:q]) : Recipe.all
 
     @title = 'Recipes'
   end
@@ -68,6 +68,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:title, :cuisine, :planning_to_cook_on, :tried_before, :instructions)
+      params.require(:recipe).permit(:title, :tried_before, :planning_to_cook_on, :instructions, :cuisine, recipe_ingrediants_attributes: [])
     end
 end

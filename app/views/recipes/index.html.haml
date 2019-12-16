@@ -1,5 +1,10 @@
 %h1 Recipes
 
+= form_tag recipes_url, remote: true, method: :get do
+  = search_field_tag :q
+
+%hr
+
 %table.table
   %thead
     %tr
@@ -8,7 +13,7 @@
       %th Planning to cook on
       %th Tried before
       %th Instructions
-      %th
+      %th Ingrediants
       %th
       %th
 

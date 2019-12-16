@@ -19,6 +19,10 @@
     = f.label :tried_before
     = f.check_box :tried_before
   .form-group
+    = f.label :ingrediants
+    = f.fields_for :recipe_ingrediants do |b|
+      = render partial: 'recipe_ingrediants/form', locals: {f: b}
+  .form-group
     = f.label :instructions
     = f.text_area :instructions, class: 'form-control'
   .actions

@@ -1,4 +1,6 @@
 class Recipe < ApplicationRecord
+  include PgSearch::Model
+
   enum cuisine: {
     American: 1,
     Italian: 2,
@@ -13,6 +15,17 @@ class Recipe < ApplicationRecord
   validates :tried_before, inclusion: { in: [true, false] }
   validate :check_date
   validate :no_js_in_instructions
+
+  has_many :recipe_ingrediants
+  has_many :ingrediants, through: :recipe_ingrediants
+
+  accepts_nested_attributes_for :recipe_ingrediants, allow_destroy: true
+
+  pg_search_scope :search,
+    against: [:title, :instructions],
+    associated_against: {
+      ingrediants: :name
+    }
 
   private
 

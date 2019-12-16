@@ -1,0 +1,6 @@
+var tb = document.querySelector('tbody');
+
+var new_content = document.createElement('tbody');
+new_content.innerHTML = "<%= j render @recipes %>";
+
+tb.parentNode.replaceChild(new_content, tb);
