@@ -13,7 +13,8 @@ class RecipeIngrediant < ApplicationRecord
     pieces: 8,
     pinch: 9,
     bag: 10,
-    bunch: 11
+    bunch: 11,
+    oz: 12
   }
 
   validates :unit, presence: true, inclusion: {in: RecipeIngrediant.units}
