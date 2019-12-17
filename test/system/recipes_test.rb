@@ -71,12 +71,12 @@ class RecipesTest < ApplicationSystemTestCase
 
     # Check the new recipe:
     within "tr.recipe[data-uuid='#{r2.id}']" do
-      assert_selector "tr.recipe[data-uuid='#{r2.id}'] td:nth-child(6) li", text: 'New Ingredient'
+      assert_selector "td:nth-child(6) li", text: 'New Ingredient'
     end
 
     # Check the old recipe:
     within "tr.recipe[data-uuid='#{r.id}']" do
-      assert_selector "tr.recipe[data-uuid='#{r2.id}'] td:nth-child(6) li", text: i_original_name
+      assert_selector "td:nth-child(6) li", text: i_original_name
     end
   end
 

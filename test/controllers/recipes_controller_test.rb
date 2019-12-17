@@ -111,7 +111,6 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
   test "should show error" do
     post recipes_url, params: { recipe: { title: 'nope' } }
-
     assert_select '#error_explanation'
   end
 end
