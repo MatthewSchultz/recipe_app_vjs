@@ -16,7 +16,7 @@ class Recipe < ApplicationRecord
   validate :check_date
   validate :no_js_in_instructions
 
-  has_many :recipe_ingrediants
+  has_many :recipe_ingrediants, dependent: :destroy
   has_many :ingrediants, through: :recipe_ingrediants
 
   accepts_nested_attributes_for :recipe_ingrediants, allow_destroy: true
