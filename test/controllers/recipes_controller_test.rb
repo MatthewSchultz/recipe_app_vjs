@@ -11,9 +11,10 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    # Assure that root is routed correctly:
-    assert_generates '/', controller: 'recipies', action: 'index'
     get recipes_url
+    assert_response :success
+
+    get root_url
     assert_response :success
 
     # Assert that the page title is set:
@@ -94,11 +95,11 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'form.edit_recipe'
   end
 
-  #test "should update recipe" do
-  #  @recipe = Recipe.first
-  #  patch recipe_url(@recipe), params: { recipe: { instructions: 'I like turtles' } }
-  #  assert_redirected_to recipes_url
-  #end
+  test "should update recipe" do
+    @recipe = Recipe.first
+    patch recipe_url(@recipe), params: { recipe: { instructions: 'I like turtles' } }
+    assert_redirected_to recipes_url
+  end
 
   test "should destroy recipe" do
     assert_difference('Recipe.count', -1) do
