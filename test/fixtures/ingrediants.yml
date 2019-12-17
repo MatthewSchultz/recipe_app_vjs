@@ -1,7 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: Salt
 
 two:
-  name: MyString
+  name: Water
+
+three:
+  name: Spaghetti
+
+four:
+  name: Pasta Sauce
+
+five:
+  name: Popcorn Packet
+
+six:
+  name: Fettuccine
