@@ -11,6 +11,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
+    # Assure that root is routed correctly:
+    assert_generates '/', controller: 'recipies', action: 'index'
     get recipes_url
     assert_response :success
 
@@ -26,8 +28,28 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     # Test that there are no show links:
     assert_select 'a', text: 'Show', count: 0
 
-    # Test that all of the recipes are show:
+    # Test that all of the recipes are shown:
     assert_select 'tr.recipe', {count: Recipe.count}
+  end
+
+  test "should search recipes" do
+    get recipes_url(q: Recipe.first.title)
+    assert_response :success
+
+    # Assert that the page title is set:
+    assert_select 'title', 'Recipes'
+
+    # Assert that the page has the correct header:
+    assert_select 'h1', 'Recipes'
+
+    # Test that the table is properly styled:
+    assert_select 'table.table'
+
+    # Test that there are no show links:
+    assert_select 'a', text: 'Show', count: 0
+
+    # Test that at
+    assert_select 'tr.recipe'
   end
 
   test "should get new" do
