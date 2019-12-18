@@ -39,14 +39,14 @@ class RecipesTest < ApplicationSystemTestCase
     r2.save
 
     # Fill it with the same ingredients
-    r.recipe_ingrediants.each do |ri|
-      r2.recipe_ingrediants.create(
-        ingrediant: ri.ingrediant,
+    r.recipe_ingredients.each do |ri|
+      r2.recipe_ingredients.create(
+        ingredient: ri.ingredient,
         qty: ri.qty,
         unit: ri.unit
       )
     end
-    i = r.ingrediants.first
+    i = r.ingredients.first
     i_original_name = i.name
 
     # Goto recipes page
@@ -64,7 +64,7 @@ class RecipesTest < ApplicationSystemTestCase
       click_on 'Edit'
     end
 
-    # Change the ingrediant:
+    # Change the ingredient:
     fill_in currently_with: i_original_name, with: 'New Ingredient'
     click_on 'Save'
     assert_text "Recipe was successfully updated"
