@@ -20,7 +20,7 @@ The installation of these tools on various platforms is beyond the scope of this
 The test suite is based on minitest (the default for Rails) and can be run with:
 
 ```bash
-rails test
+rails test && rails test:system
 ```
 
 **ALL DEVELOPERS: Tests *must* pass before pushing to dev. Tests *must* pass before pushing to master.**
