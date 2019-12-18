@@ -1,6 +1,6 @@
-class CreateIngrediants < ActiveRecord::Migration[6.0]
+class CreateIngredients < ActiveRecord::Migration[6.0]
   def change
-    create_table :ingrediants, id: :uuid do |t|
+    create_table :ingredients, id: :uuid do |t|
       t.string :name, length: 255
 
       t.index :name, unique: true

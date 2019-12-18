@@ -74,10 +74,10 @@ class RecipeTest < ActiveSupport::TestCase
     assert_includes recipe.errors, :tried_before
   end
 
-  test 'search should locate recipe by name or ingrediant' do
+  test 'search should locate recipe by name or ingredient' do
     recipe = Recipe.first
     assert_includes Recipe.search(recipe.title), recipe
-    assert_includes Recipe.search(recipe.ingrediants.first.name), recipe
+    assert_includes Recipe.search(recipe.ingredients.first.name), recipe
   end
 
   test 'search should exclude stuff' do

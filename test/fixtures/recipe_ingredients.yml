@@ -3,62 +3,62 @@
 # popcorn to popcorn
 one:
   recipe: one
-  ingrediant: five
+  ingredient: five
   qty: 1
   unit: 8
 
 # 6qt Water to spaghetti:
 two:
   recipe: two
-  ingrediant: one
+  ingredient: one
   qty: 6
   unit: 4
 
 # 25oz pasta Sauce to spaghetti:
 three:
   recipe: two
-  ingrediant: four
+  ingredient: four
   qty: 25
   unit: 12
 
 # pinch of salt to spaghetti:
 four:
   recipe: two
-  ingrediant: one
+  ingredient: one
   qty: 1
   unit: 9
 
 # spaghetti to spaghetti:
 five:
   recipe: two
-  ingrediant: three
+  ingredient: three
   qty: 1
   unit: 11
 
 # 6qt Water to spaghetti:
 six:
   recipe: three
-  ingrediant: one
+  ingredient: one
   qty: 6
   unit: 4
 
 # 25oz pasta Sauce to spaghetti:
 seven:
   recipe: three
-  ingrediant: four
+  ingredient: four
   qty: 25
   unit: 12
 
 # pinch of salt to spaghetti:
 eight:
   recipe: three
-  ingrediant: one
+  ingredient: one
   qty: 1
   unit: 9
 
 # Fettuccine to Fettuccine:
 nine:
   recipe: three
-  ingrediant: six
+  ingredient: six
   qty: 1
   unit: 11
