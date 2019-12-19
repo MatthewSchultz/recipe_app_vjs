@@ -14,6 +14,9 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     get recipes_url
     assert_response :success
 
+    get root_url
+    assert_response :success
+
     # Assert that the page title is set:
     assert_select 'title', 'Recipes'
 
@@ -26,8 +29,28 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     # Test that there are no show links:
     assert_select 'a', text: 'Show', count: 0
 
-    # Test that all of the recipes are show:
+    # Test that all of the recipes are shown:
     assert_select 'tr.recipe', {count: Recipe.count}
+  end
+
+  test "should search recipes" do
+    get recipes_url(q: Recipe.first.title)
+    assert_response :success
+
+    # Assert that the page title is set:
+    assert_select 'title', 'Recipes'
+
+    # Assert that the page has the correct header:
+    assert_select 'h1', 'Recipes'
+
+    # Test that the table is properly styled:
+    assert_select 'table.table'
+
+    # Test that there are no show links:
+    assert_select 'a', text: 'Show', count: 0
+
+    # Test that at
+    assert_select 'tr.recipe'
   end
 
   test "should get new" do
@@ -70,13 +93,15 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     # Assert that the form is present:
     assert_select 'form.edit_recipe'
+
+    assert_select 'a', 'Add Ingredient'
   end
 
-  #test "should update recipe" do
-  #  @recipe = Recipe.first
-  #  patch recipe_url(@recipe), params: { recipe: { instructions: 'I like turtles' } }
-  #  assert_redirected_to recipes_url
-  #end
+  test "should update recipe" do
+    @recipe = Recipe.first
+    patch recipe_url(@recipe), params: { recipe: { instructions: 'I like turtles' } }
+    assert_redirected_to recipes_url
+  end
 
   test "should destroy recipe" do
     assert_difference('Recipe.count', -1) do
@@ -88,7 +113,6 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
 
   test "should show error" do
     post recipes_url, params: { recipe: { title: 'nope' } }
-
     assert_select '#error_explanation'
   end
 end

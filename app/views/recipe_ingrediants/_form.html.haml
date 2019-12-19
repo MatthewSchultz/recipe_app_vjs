@@ -1,4 +1,0 @@
-= f.fields_for :ingrediant do |b|
-  = render partial: 'ingrediants/form', locals: {f: b}
-= f.number_field :qty
-= f.select :unit, RecipeIngrediant.units.keys

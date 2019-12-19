@@ -16,15 +16,15 @@ class Recipe < ApplicationRecord
   validate :check_date
   validate :no_js_in_instructions
 
-  has_many :recipe_ingrediants
-  has_many :ingrediants, through: :recipe_ingrediants
+  has_many :recipe_ingredients, dependent: :destroy
+  has_many :ingredients, through: :recipe_ingredients
 
-  accepts_nested_attributes_for :recipe_ingrediants, allow_destroy: true
+  accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
 
   pg_search_scope :search,
     against: [:title, :instructions],
     associated_against: {
-      ingrediants: :name
+      ingredients: :name
     }
 
   private

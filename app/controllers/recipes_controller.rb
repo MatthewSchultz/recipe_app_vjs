@@ -61,13 +61,14 @@ class RecipesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def recipe_params
-      params.require(:recipe).permit(:title, :tried_before, :planning_to_cook_on, :instructions, :cuisine, recipe_ingrediants_attributes: [:id, :qty, :unit, ingrediant_attributes: [:name, :id]])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def recipe_params
+    params.require(:recipe).permit(:title, :tried_before, :planning_to_cook_on, :instructions, :cuisine, recipe_ingredients_attributes: [:id, :qty, :unit, :ingredient_name, :_destroy])
+  end
 end
