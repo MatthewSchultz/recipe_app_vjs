@@ -6,4 +6,16 @@ class IngredientTest < ActiveSupport::TestCase
     assert_not i.save
     assert_includes i.errors, :name
   end
+
+  test 'cannot create empty ingredient' do
+    i = Ingredient.new()
+    assert_not i.save
+    assert_includes i.errors, :name
+  end
+
+  test 'cannot create duplicate ingredient' do
+    i = Ingredient.first.dup()
+    assert_not i.save
+    assert_includes i.errors, :name
+  end
 end
