@@ -93,6 +93,8 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     # Assert that the form is present:
     assert_select 'form.edit_recipe'
+
+    assert_select 'a', 'Add Ingredient'
   end
 
   test "should update recipe" do

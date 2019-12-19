@@ -13,7 +13,7 @@ two:
   tried_before: false
   instructions: '<ol><li>Boil a massive pot of water</li><li>Dump pasta in water</li><li>Cook till soft</li><li>Strain pasta</li><li>Pour sauce on top</li><li>Eat</li></ol>'
 
-two:
+three:
   title: Fettuccine
   cuisine: 2
   tried_before: false

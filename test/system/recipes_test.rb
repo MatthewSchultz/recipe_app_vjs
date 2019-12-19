@@ -4,6 +4,7 @@ class RecipesTest < ApplicationSystemTestCase
   test "visiting the index" do
     visit recipes_url
     assert_selector "h1", text: "Recipes"
+    take_screenshot
   end
 
   test "creating a Recipe" do
@@ -20,6 +21,7 @@ class RecipesTest < ApplicationSystemTestCase
   end
 
   test "updating a Recipe" do
+
     visit recipes_url
     click_on "Edit", match: :first
 
@@ -53,7 +55,7 @@ class RecipesTest < ApplicationSystemTestCase
     visit recipes_url
 
     # Find the recipe
-    within "tr.recipe[data-uuid='#{r2.id}']" do
+    within row_for(r2) do
       # Check that the second recipe was created:
       assert_selector 'td:nth-child(1)', text: r2.title
 
@@ -70,16 +72,15 @@ class RecipesTest < ApplicationSystemTestCase
     assert_text "Recipe was successfully updated"
 
     # Check the new recipe:
-    within "tr.recipe[data-uuid='#{r2.id}']" do
+    within row_for(r2) do
       assert_selector "td:nth-child(6) li", text: 'New Ingredient'
     end
 
     # Check the old recipe:
-    within "tr.recipe[data-uuid='#{r.id}']" do
+    within row_for(r) do
       assert_selector "td:nth-child(6) li", text: i_original_name
     end
   end
-
 
   test "destroying a Recipe" do
     visit recipes_url
@@ -88,5 +89,58 @@ class RecipesTest < ApplicationSystemTestCase
     end
 
     assert_text "Recipe was successfully destroyed"
+  end
+
+  test 'adding an ingredient' do
+    r = Recipe.first
+
+    visit recipes_url
+    within row_for(r) do
+      click_on 'Edit'
+    end
+
+    assert_selector 'a.add-fields', text: 'Add Ingredient'
+    ingredients_count = all('.recipe-ingredient').count
+
+    # Try to add an ingredient and assert that the new ingredient is added to the page:
+    click_on 'Add Ingredient'
+    assert_selector '.recipe-ingredient', count: ingredients_count + 1
+
+    # Fill in some stuff
+    fill_in placeholder: 'Ingredient', currently_with: '', with: 'Some Ingredient'
+    fill_in placeholder: 'Quantity', currently_with: '', with: '4.6'
+
+    click_on 'Save'
+
+    within row_for(r) do
+      # Find the newly added ingredient:
+      assert_selector 'td:nth-child(6) li', text: 'Some Ingredient'
+      assert_selector 'td:nth-child(6) li', text: '4.6'
+    end
+  end
+
+  test 'removing an ingredient' do
+    r = Recipe.first
+    ri = r.recipe_ingredients.last
+    ri_name = ri.ingredient.name
+
+    visit edit_recipe_url(r)
+
+    within row_for(ri) do
+      # Find the form stuff for this ingredient:
+      assert_selector '.ingredient-fields'
+
+      click_on 'Remove'
+
+      # Assert that hitting that button got rid of the fields:
+      assert_selector '.ingredient-fields', count: 0
+    end
+
+    click_on 'Save'
+
+    # Assert that it was removed:
+    within row_for(r) do
+      assert_selector 'td:nth-child(6) li', text: ri_name, count: 0
+    end
   end
 end

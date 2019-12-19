@@ -2,6 +2,7 @@
 
 = form_tag recipes_url, remote: true, method: :get do
   = search_field_tag :q
+  = submit_tag 'Search', class: 'btn btn-sm btn-primary'
 
 %hr
 
