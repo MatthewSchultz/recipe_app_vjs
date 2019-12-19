@@ -21,13 +21,16 @@ class RecipeIngredient < ApplicationRecord
   validates :qty, presence: true
   validates :ingredient_name, presence: true, length: 1..255
 
+  validate :no_duplicate_ingredients
+
   before_save :set_ingredient # don't use after_validate, since this should be atomic
 
   # Cannot do this, see GH-10
   #accepts_nested_attributes_for :ingredient
 
   def ingredient_name
-    @ingredient_name || self.ingredient.name
+    # Safe-navigation is required to deal with new models here:
+    @ingredient_name || self.ingredient&.name
   end
 
   def ingredient_name=(i_name)
@@ -42,5 +45,12 @@ class RecipeIngredient < ApplicationRecord
   def set_ingredient
     # if name has been written to, change the ingredient:
     self.ingredient = Ingredient.find_or_create_by(name: @ingredient_name) if @ingredient_name
+  end
+
+  def no_duplicate_ingredients
+
+    if recipe.recipe_ingredients.where.not(id: self.id).joins(:ingredient).find_by(ingredients: {name: ingredient_name}).present?
+      self.errors.add(:ingredient_name, 'already present on this recipe')
+    end
   end
 end

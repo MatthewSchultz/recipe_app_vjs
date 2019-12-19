@@ -10,7 +10,7 @@ one:
 # 6qt Water to spaghetti:
 two:
   recipe: two
-  ingredient: one
+  ingredient: two
   qty: 6
   unit: 4
 
@@ -38,7 +38,7 @@ five:
 # 6qt Water to spaghetti:
 six:
   recipe: three
-  ingredient: one
+  ingredient: two
   qty: 6
   unit: 4
 

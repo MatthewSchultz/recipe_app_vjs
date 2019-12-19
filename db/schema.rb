@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_142918) do
+ActiveRecord::Schema.define(version: 2019_12_19_201902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_142918) do
   create_table "recipe_ingredients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "recipe_id", null: false
     t.uuid "ingredient_id", null: false
-    t.decimal "qty", precision: 3, null: false
+    t.decimal "qty", precision: 10, scale: 2, null: false
     t.integer "unit", limit: 2, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

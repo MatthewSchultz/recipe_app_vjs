@@ -1,4 +1,7 @@
-.ingredient_section
-  = f.text_field :ingredient_name
-  = f.number_field :qty
-  = f.select :unit, RecipeIngredient.units.keys
+.recipe-ingredient{data: {uuid: f.object.id}}
+  = f.hidden_field :_destroy
+  .ingredient-fields
+    = f.text_field :ingredient_name, class: 'recipe-ingredient-name', placeholder: 'Ingredient'
+    = f.number_field :qty, class: 'recipe-ingredient-qty', placeholder: 'Quantity', step: 0.01, min: 0
+    = f.select :unit, RecipeIngredient.units.keys
+    = link_to 'Remove', '#', class: 'remove-fields btn btn-danger btn-sm'
